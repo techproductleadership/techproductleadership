@@ -762,7 +762,7 @@
                 
                 <div class="form-group">
                     <label for="linkedin">LinkedIn Profile URL</label>
-                    <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourname">
+<input type="text" id="linkedin" name="linkedin" placeholder="linkedin.com/in/yourname">
                 </div>
                 
                 <button type="submit" class="submit-button">Book My Call</button>
@@ -810,9 +810,9 @@
             
             // LinkedIn URL validation
             if (linkedin && linkedin.trim() !== '') {
-                const linkedinPattern = /^https?:\/\/(www\.)?linkedin\.com\/(in|pub)\/[a-zA-Z0-9-_]+\/?$/;
+const linkedinPattern = /^(https?:\/\/)?(www\.)?linkedin\.com\/(in|pub)\/[a-zA-Z0-9-_]+\/?$/;
                 if (!linkedinPattern.test(linkedin.trim())) {
-                    alert('Please enter a valid LinkedIn profile URL (e.g., https://linkedin.com/in/yourname)');
+alert('Please enter a valid LinkedIn profile URL (e.g., linkedin.com/in/yourname)');
                     return;
                 }
             }
@@ -902,3 +902,4 @@
         </script>
         </body>
 </html>
+

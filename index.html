@@ -1,0 +1,945 @@
+        // FAQ Toggle
+        function toggleFAQ(button) {
+            const answer = button.nextElementSibling;
+            const isActive = answer.classList.contains('active');
+            
+            // Close all FAQs
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked FAQ if it wasn't active
+            if (!isActive) {
+                answer.classList.add('active');
+            }
+        }        /* FAQ */
+        .faq-item {
+            background: white;
+            border-radius: 15px;
+            margin: 1rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            background: #f7fafc;
+            padding: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1.1rem;
+        }
+        
+        .faq-answer {
+            padding: 1.5rem;
+            display: none;
+        }
+        
+        .faq-answer.active {
+            display: block;
+        }<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Product Leadership & Scaling Innovation while embracing AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4c51bf;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #ff6b6b, #ee5522);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .instructor-intro {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .course-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Main Content */
+        .main-content {
+            background: white;
+            position: relative;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2d3748;
+        }
+        
+        /* Problem & Solution */
+        .problem-solution {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+        
+        .problem-box, .solution-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #ff6b6b;
+        }
+        
+        .solution-box {
+            border-left-color: #4c51bf;
+        }
+        
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        /* Curriculum */
+        .curriculum {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            color: white;
+        }
+        
+        .week-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .week-number {
+            background: linear-gradient(135deg, #ff6b6b, #ee5522);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Instructor */
+        .instructor {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .instructor-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            font-weight: 800;
+        }
+        
+        .instructor-bio {
+            flex: 1;
+        }
+        
+        /* Pricing */
+        .pricing {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .price-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 3rem;
+            max-width: 500px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .price-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .price-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .price-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4ade80;
+            font-weight: bold;
+        }
+        
+        /* FAQ */
+        .faq-item {
+            background: white;
+            border-radius: 15px;
+            margin: 1rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            background: #f7fafc;
+            padding: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1.1rem;
+        }
+        
+        .faq-answer {
+            padding: 1.5rem;
+            display: none;
+        }
+        
+        .faq-answer.active {
+            display: block;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1a202c;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            background: none;
+            border: none;
+        }
+        
+        .close-button:hover {
+            color: #333;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .required {
+            color: #e53e3e;
+        }
+        
+        .submit-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .submit-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .modal h2 {
+            margin-bottom: 1.5rem;
+            color: #2d3748;
+            text-align: center;
+        }
+        
+        .confirmation-content {
+            text-align: center;
+        }
+        
+        .confirmation-content h2 {
+            color: #4c51bf;
+            margin-bottom: 1rem;
+        }
+        
+        .confirmation-content p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        
+        /* Floating Action Button */
+        .floating-cta {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #ff6b6b, #ee5522);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .floating-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .course-stats {
+                gap: 1.5rem;
+            }
+            
+            .instructor {
+                text-align: center;
+            }
+            
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-on-scroll {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">Tech Product Leadership</div>
+            <a href="#pricing" class="cta-button" onclick="enrollNow()">Book a Call with my Team</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Master Product Leadership &<br>Scaling Innovation while embracing AI</h1>
+            <p class="subtitle">Go beyond the hype by learning from an experienced leader who has built transformative products and scaled teams globally. Transform from Product Manager to Product Leader with proven frameworks & real-world case studies.</p>
+            
+            <div class="instructor-intro">
+                <p><strong>Led by Ravi Bhagavan, Sr Director of Product @ Walmart Connect & Former Head of Product @ Amazon Advertising</strong></p>
+                <p>Product Leadership skills forged over 10 years in the best product management university in the world- Amazon • Direct leadership of cross-functional teams of over 100 team members across product management, engineering & data/applied science • Amazon Bar Raiser • AI/ML products patent holder</p>
+            </div>
+            
+            <div class="course-stats">
+                <div class="stat">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">Weeks</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">Live Sessions</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Hours Each</span>
+                </div>
+            </div>
+            
+            <a href="#pricing" class="cta-button" style="font-size: 1.2rem; padding: 15px 30px;" onclick="enrollNow()">Start Your Leadership Journey</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Problem & Solution -->
+        <section class="section problem-solution">
+            <div class="container">
+                <h2>The Product Leadership Gap</h2>
+                
+                <div class="problem-box">
+                    <h3 style="color: #e53e3e; margin-bottom: 1rem;">The Challenge You're Facing</h3>
+                    <p>You're a successful Product Manager, but stepping into leadership feels like a completely different game. Suddenly you're not just shipping features—you're setting vision, managing up to executives, building team culture, and navigating complex organizational dynamics. Now add in the need to keep pace with AI technologies while identifying the right use case for leveraging AI, all while learning, applying and explaining the benefits to executives and stakeholders.</p>
+                    <p style="margin-top: 1rem;">As you step into leadership roles, you will lead other product managers (and maybe other roles such as software engineers) of varying levels of seniority. Getting the team to buy into the vision and mission is a key challenge.</p>
+                    <p style="margin-top: 1rem;">Most PMs are promoted to leadership roles without proper training, leaving them unprepared for the challenges of leading at scale.</p>
+                </div>
+                
+                <div class="solution-box">
+                    <h3 style="color: #4c51bf; margin-bottom: 1rem;">The Solution: Systematic Leadership Development</h3>
+                    <p>This isn't another generic leadership course. This is the systematic approach to product leadership learned and refined over years of building and scaling at Amazon and now Walmart. We will also dedicate time to learn about how you can leverage AI to accelerate your success as a Product Leader. Every single topic is grounded in real world experience of your coach. No BS, no fluff.</p>
+                    <p style="margin-top: 1rem;">By the end of 6 weeks, you'll have the confidence and capabilities to lead product organizations of any size, drive innovation at scale, and create lasting impact.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- What You'll Master -->
+        <section class="section">
+            <div class="container">
+                <h2>What You'll Master</h2>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🎯</div>
+                        <h3>Strategic Vision at Scale</h3>
+                        <p>Learn to create compelling product visions that align stakeholders across complex organizations. Master frameworks for building multi-year strategies that balance innovation with execution, just like Amazon's long-term thinking approach.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📊</div>
+                        <h3>Technical Leadership & Data Mastery</h3>
+                        <p>Develop the technical fluency to lead engineering teams confidently. Learn to evaluate architecture decisions, interpret complex data, and make technology choices that scale - essential skills for leading at Amazon and Walmart's level.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🤖</div>
+                        <h3>Product Thinking that embraces AI and cuts through the hype</h3>
+                        <p>Cut through AI buzzwords with real-world frameworks. Learn when AI genuinely adds value vs when it's just marketing. Walk through actual case studies from billion-dollar AI implementations at major tech companies.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🔄</div>
+                        <h3>Systems Thinking for Complex Products</h3>
+                        <p>Master the ability to see interconnections and design products that scale gracefully. Learn to anticipate unintended consequences and build sustainable competitive advantages through systems-level architecture thinking.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💬</div>
+                        <h3>Executive Influence & Cross-Functional Mastery</h3>
+                        <p>Transform from someone who executes to someone who influences. Master the art of presenting to C-suite executives, building alignment across diverse teams, and driving decisions without formal authority.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">👥</div>
+                        <h3>Scaling Teams from 10 to 100+</h3>
+                        <p>Learn proven frameworks for building high-performing product organizations. Master hiring, performance management, and creating inclusive cultures while maintaining velocity - lessons from scaling teams at global tech giants.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Curriculum -->
+        <section class="section curriculum">
+            <div class="container">
+                <h2>6-Week Product Leadership Curriculum</h2>
+                
+                <div class="week-card">
+                    <div class="week-number">1</div>
+                    <h3>Product Strategy & Vision</h3>
+                    <p>Master the art of creating compelling product visions that inspire and align stakeholders. Learn strategic frameworks for market analysis, competitive positioning, and opportunity assessment. Practice building and communicating multi-year product strategies that drive business impact.</p>
+                </div>
+                
+                <div class="week-card">
+                    <div class="week-number">2</div>
+                    <h3>Technical Fluency & Data Driven Decision Making</h3>
+                    <p>Develop the technical depth needed to lead engineering teams effectively. Learn to evaluate technical trade-offs, understand system architecture decisions, and use data to drive product decisions. Master frameworks for working with technical teams and making informed technology choices.</p>
+                </div>
+                
+                <div class="week-card">
+                    <div class="week-number">3</div>
+                    <h3>AI Fluency & Experience Based Use Cases Addressed by AI</h3>
+                    <p>Build practical AI fluency through real-world case studies from Amazon and Walmart. Learn to identify legitimate AI opportunities, evaluate AI vs traditional solutions, and understand when AI adds genuine value. Walk through actual AI implementations and their business impact.</p>
+                </div>
+                
+                <div class="week-card">
+                    <div class="week-number">4</div>
+                    <h3>Systems Thinking for Product Leaders</h3>
+                    <p>Develop the ability to see the bigger picture and understand complex interdependencies. Learn to design products that scale, anticipate unintended consequences, and create sustainable competitive advantages through systems-level thinking and architecture.</p>
+                </div>
+                
+                <div class="week-card">
+                    <div class="week-number">5</div>
+                    <h3>The Art of Communication & Cross Functional Collaboration</h3>
+                    <p>Master the communication skills that separate great product leaders from good ones. Learn to influence without authority, present to executives, facilitate difficult conversations, and build alignment across diverse teams and stakeholders.</p>
+                </div>
+                
+                <div class="week-card">
+                    <div class="week-number">6</div>
+                    <h3>Leadership & Team Management</h3>
+                    <p>Learn to build and lead high-performing product teams at scale. Cover hiring frameworks, performance management, career development, and creating inclusive team cultures. Develop your personal leadership style and 90-day action plan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Instructor -->
+        <section class="section">
+            <div class="container">
+                <h2>Your Instructor</h2>
+                
+                <div class="instructor">
+                    <div class="instructor-image">RB</div>
+                    <div class="instructor-bio">
+                        <h3>Ravi Bhagavan</h3>
+                        <p style="font-size: 1.1rem; color: #4c51bf; font-weight: 600; margin: 0.5rem 0;">Sr Director of Product @ Walmart Connect • Former Head of Product @ Amazon Advertising</p>
+                        
+                        <p>Ravi has spent 15+ years building AI/ML products that drive billions in revenue and serve millions of users. At Amazon, he led product, engineering, and science teams of over 100 team members across 8 different locations, delivering machine learning-powered targeting and audience solutions that contributed to ~80% of Amazon DSP's annual revenue.</p>
+                        
+                        <p style="margin-top: 1rem;">Currently at Walmart Connect, he leads product teams responsible for Walmart's $3B ad business, including ML-driven monetization products, programmatic DSP platforms, and innovative AI-powered shoppable TV solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section class="section pricing" id="pricing">
+            <div class="container">
+                <h2>Transform Your Career</h2>
+                
+                <div class="price-card">
+                    <ul class="price-features">
+                        <li>6 weeks of live instruction (12 sessions)</li>
+                        <li>Lifetime access to all course materials, which includes 3 proprietary templates that Ravi uses in his role leading global product teams</li>
+                        <li>One 1 hour 1:1 coaching session with Ravi that can be used as desired by the student (e.g. mock interview, resume review, deeper dive into any parts of the curriculum)</li>
+                        <li>100% refund if you are not satisfied after your first class</li>
+                    </ul>
+                    
+                    <a href="#" class="cta-button" style="font-size: 1.3rem; padding: 18px 40px; margin-top: 2rem;" onclick="enrollNow()">Book a Call with my Team</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2025 Tech Product Leadership. All rights reserved.</p>
+                <p style="margin-top: 1rem;">Questions? Email us at hello@techproductleadership.com</p>
+            </div>
+        </footer>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Tech Product Leadership. All rights reserved.</p>
+            <p style="margin-top: 1rem;">Questions? Email us at hello@techproductleadership.com</p>
+        </div>
+    </footer>
+
+    <!-- Floating CTA -->
+    <a href="#pricing" class="floating-cta" onclick="enrollNow()">Book a Call with my Team</a>
+
+    <!-- Qualification Modal -->
+    <div id="qualification-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeModal()">&times;</button>
+            <h2>Book Your Strategy Call</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: #666;">Please share a few details so we can prepare for our conversation.</p>
+            
+            <form onsubmit="submitQualificationForm(event)">
+                <div class="form-group">
+                    <label for="name">Full Name <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="linkedin">LinkedIn Profile URL</label>
+                    <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourname">
+                </div>
+                
+                <button type="submit" class="submit-button">Book My Call</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeConfirmation()">&times;</button>
+            <div class="confirmation-content">
+                <h2>✅ All Set!</h2>
+                <p>Thank you and we will talk to you soon</p>
+                <button class="submit-button" onclick="closeConfirmation()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // FAQ Toggle
+        function toggleFAQ(button) {
+            const answer = button.nextElementSibling;
+            const isActive = answer.classList.contains('active');
+            
+            // Close all FAQs
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked FAQ if it wasn't active
+            if (!isActive) {
+                answer.classList.add('active');
+            }
+        }
+        
+        // Enroll Now Function
+        function enrollNow() {
+            document.getElementById('qualification-modal').style.display = 'flex';
+        }
+        
+        // Close modal
+        function closeModal() {
+            document.getElementById('qualification-modal').style.display = 'none';
+        }
+        
+        // Handle form submission
+        function submitQualificationForm(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const linkedin = formData.get('linkedin');
+            
+            // Basic validation
+            if (!name || !email) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // LinkedIn URL validation
+            if (linkedin && linkedin.trim() !== '') {
+                const linkedinPattern = /^https?:\/\/(www\.)?linkedin\.com\/(in|pub)\/[a-zA-Z0-9-_]+\/?$/;
+                if (!linkedinPattern.test(linkedin.trim())) {
+                    alert('Please enter a valid LinkedIn profile URL (e.g., https://linkedin.com/in/yourname)');
+                    return;
+                }
+            }
+            
+            // Submit to Formspree
+            const submitButton = document.querySelector('.submit-button');
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+            
+            fetch('https://formspree.io/f/xqaldjlk', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    // Close modal
+                    closeModal();
+                    
+                    // Redirect to Calendly
+                    window.open('https://calendly.com/techproductleadership', '_blank');
+                    
+                    // Show confirmation
+                    setTimeout(() => {
+                        showConfirmation();
+                    }, 1000);
+                } else {
+                    alert('There was an error submitting your information. Please try again.');
+                }
+                
+                // Reset button
+                submitButton.textContent = 'Book My Call';
+                submitButton.disabled = false;
+            }).catch(error => {
+                alert('There was an error submitting your information. Please try again.');
+                submitButton.textContent = 'Book My Call';
+                submitButton.disabled = false;
+            });
+        }
+        
+        // Show confirmation message
+        function showConfirmation() {
+            document.getElementById('confirmation-modal').style.display = 'flex';
+        }
+        
+        // Close confirmation
+        function closeConfirmation() {
+            document.getElementById('confirmation-modal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const qualModal = document.getElementById('qualification-modal');
+            const confModal = document.getElementById('confirmation-modal');
+            if (event.target === qualModal) {
+                closeModal();
+            }
+            if (event.target === confModal) {
+                closeConfirmation();
+            }
+        }
+        
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-on-scroll');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
